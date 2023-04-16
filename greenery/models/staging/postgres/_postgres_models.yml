@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Contains addresses of users by address_id and user_id. 
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+      - name: zipcode
+        tests:
+          - positive_values
+
+  - name: stg_users
+    description: Contains all users in the system by user_id. 
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+
+  - name: stg_promos
+    description: Contains promos by promo_id showing discount amount and status. 
+    columns:
+      - name: promo_id
+        tests:
+          - not_null
+      - name: discount
+        tests:
+          - positive_values
+
+  - name: stg_products
+    description: Contains products by product_id. 
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: Contains orders by order_id showing user_id and promo_id. 
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: Contains product_ids associated with an order_id. 
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+  - name: stg_events
+    description: Contains events with associated users, orders and products. 
+    columns:
+      - name: event_id
+        tests:
+          - not_null
