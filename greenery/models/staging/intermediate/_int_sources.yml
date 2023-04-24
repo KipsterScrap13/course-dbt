@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+
+  - name: intermediate # name of the source (this can be named whatever you want, but should be descriptive.)
+    schema: dbt_nordgrenucscedu # this is the schema our raw data lives in
+    database: dev_db # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: int_page_view_events 
+        description: >
+          Contains page view product info 
+
+      - name: int_total_page_views  
+        description: >
+          Contains total page views for page_url 
+          
+      - name: int_daily_page_views  
+        description: >
+          Contains daily page views for page_url

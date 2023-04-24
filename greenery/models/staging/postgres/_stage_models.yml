@@ -1,0 +1,28 @@
+version: 2
+
+models:
+
+  - name: stg_user_order_qty
+    description: Contains the order quantities per user_id. 
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: order_quantity
+        tests:
+          - positive_values
+
+  - name: stg_product_order_qty
+    description: Contains the order quantities per product_id. 
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: order_quantity
+        tests:
+          - positive_values
+          
+  - name: stg_user_order_frequency
+    description: Contains number of users with one or multiple orders and multiple order frequency. 

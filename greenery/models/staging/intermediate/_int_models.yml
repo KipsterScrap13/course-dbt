@@ -1,0 +1,12 @@
+version: 2
+
+models:
+
+  - name: int_page_view_events
+    description: Contains page view product info. 
+          
+  - name: int_total_page_views
+    description: Contains total page views for page_url.    
+
+  - name: int_daily_page_views
+    description: Contains daily page views for page_url. 
