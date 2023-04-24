@@ -1,0 +1,67 @@
+My user repeat rate is in the stg_user_order_frequency model in my project. 
+I am not familiar with PostgreSQL, so I broke it into two pieces, as follows:
+
+stg_user_order_qty:
+
+{{
+  config(
+    materialized='view'
+  )
+}}
+
+SELECT 
+    user_id, 
+    count(distinct order_id) as order_quantity
+FROM {{ source('postgres', 'orders') }}
+GROUP BY 1
+
+and 
+
+stg_user_order_frequency:
+
+{{
+  config(
+    materialized='view'
+  )
+}}
+
+SELECT 
+ (
+ select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ where order_quantity = 1
+ ) as one_purchase
+ , (
+ select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ where order_quantity = 2
+ ) as two_purchases
+ , (
+ select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ where order_quantity = 3
+ ) as three_purchases
+ , (
+ select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ where order_quantity >= 2
+ ) as two_plus_purchases
+ , (
+ select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ ) as purchase_users
+ , (
+ select div0((select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}
+ where order_quantity >= 2), 
+ (select count(distinct user_id) 
+  from {{ source('stage', 'stg_user_order_qty') }}))) as purchase_repeat_rate
+FROM {{ source('stage', 'stg_user_order_qty') }} 
+LIMIT 1
+
+
+SELECT *  
+  FROM dev_db.dbt_nordgrenucscedu.stg_user_order_frequency
+
+ONE_PURCHASE	TWO_PURCHASES	THREE_PURCHASES	TWO_PLUS_PURCHASES	PURCHASE_USERS	PURCHASE_REPEAT_RATE
+25	            28	            34	            99	                124	            0.798387
