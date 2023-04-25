@@ -7,5 +7,5 @@
 SELECT 
     product_id, 
     count(quantity) as item_quantity
-FROM {{ source('postgres', 'order_items') }}
+FROM {{ ref('stg_order_items') }}
 GROUP BY 1
