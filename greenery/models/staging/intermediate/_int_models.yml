@@ -10,3 +10,18 @@ models:
 
   - name: int_daily_page_views
     description: Contains daily page views for page_url. 
+    
+  - name: int_product_events
+    description: Contains product events by event type.  
+    
+  - name: int_product_sessions
+    description: Contains product sessions by event type.  
+    
+  - name: int_product_session_purchases
+    description: Contains ...  
+    
+  - name: int_user_events
+    description: Contains user events by event type.  
+    
+  - name: int_user_sessions
+    description: Contains user sessions by event type. 
