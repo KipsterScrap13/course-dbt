@@ -70,3 +70,16 @@ e18f33a6-b89a-4fbc-82ad-ccba5bb261cc	Ponytail Palm	      80.75	93	      28	     
 e8b6528e-a830-4d03-a027-473b411c7f02	Snake Plant	        25.5	48	      29	      73	        0.39726
 58b575f2-2192-4a53-9d21-df9a0c14fc25	Angel Wings Begonia	95	  65	      24	      61	        0.393442
 4cda01b9-62e2-46c5-830f-b7f262a58fb1	Pothos	            30.5	0	        21	      61	        0.344262
+
+'
+Ran the product snapshot and got the following apparent product changes from week 2 to week 3 
+(I could be wrong because I forgot this part in project 2 last week):
+
+NAME	            DBT_UPDATED_AT	          DBT_VALID_FROM	          
+String of pearls	2023-04-30 06:19:49.731   2023-04-30 06:19:49.731	
+ZZ Plant	        2023-04-30 06:19:49.731	  2023-04-30 06:19:49.731	
+Bamboo	          2023-04-30 06:19:49.731	  2023-04-30 06:19:49.731	
+Philodendron	    2023-04-30 06:19:49.731	  2023-04-30 06:19:49.731	
+Monstera	        2023-04-30 06:19:49.731	  2023-04-30 06:19:49.731	
+Pothos	          2023-04-30 06:19:49.731	  2023-04-30 06:19:49.731	
+
