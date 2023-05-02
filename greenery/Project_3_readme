@@ -33,11 +33,22 @@ And the conversion rate by product is in model marts/product/facts/fact_conversi
   )
 }}
 
+SELECT SP.PRODUCT_ID
+, PR.NAME
+, PR.PRICE
+, PR.INVENTORY 
+, SP.PURCHASES
+, SP.PAGE_VIEWS
+, div0(SP.PURCHASES,
+ SP.PAGE_VIEWS) AS PRODUCT_CONVERSION_RATE 
+  FROM {{ ref('int_product_session_purchases') }} SP
+  JOIN {{ ref('stg_products') }} PR on PR.PRODUCT_ID = SP.PRODUCT_ID
+  ORDER BY 7 DESC
+
 which yields:
 
 SELECT * 
   FROM dev_db.dbt_nordgrenucscedu.FACT_CONVERSION_RATE_BY_PRODUCT
-  ORDER BY 7 DESC
 
 PRODUCT_ID                            NAME	              PRICE	INVENTORY	PURCHASES	PAGE_VIEWS	PRODUCT_CONVERSION_RATE
 fb0e8be7-5ac4-4a76-a1fa-2cc4bf0b2d80	String of pearls	  80.5	0	        39	      64	        0.609375
